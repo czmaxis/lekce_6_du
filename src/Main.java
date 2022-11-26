@@ -7,14 +7,19 @@ import java.io.FileNotFoundException;
 public class Main {
 
 
-    public static void main(String[] args) throws PlantException {
+    public static void main(String[] args) throws  FileNotFoundException {
 
 
-            Plant ruze = new Plant("růže", "test", LocalDate.of(1998,5,11), LocalDate.of(1999,5,11), -11);
-            ArrayList<Plant> listOfPlants = new ArrayList<>();
-            listOfPlants.add(ruze);
+    }
 
-         System.out.println(ruze.getWateringInfo());
+
+
+//
+//            Plant ruze = new Plant("růže", "test", LocalDate.of(1998,5,11), LocalDate.of(1999,5,11), -11);
+//            ArrayList<Plant> listOfPlants = new ArrayList<>();
+//            listOfPlants.add(ruze);
+
+
 
 
 

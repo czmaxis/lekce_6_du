@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Plant {
     private String name;
@@ -6,6 +7,7 @@ public class Plant {
     private LocalDate planted;
     private LocalDate watering;
     private int frequencyOfWatering;
+
 
 
 
@@ -32,6 +34,23 @@ public class Plant {
         this.planted = LocalDate.now();
         this.watering = LocalDate.now();
         this.frequencyOfWatering = 7;
+    }
+
+    public static Plant parsePlant(String data)throws PlantException {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+
+        String[] items = data.split("   ");
+        String name = items[0];
+        String notes = items[1];
+        LocalDate planted = LocalDate.parse(items[5]);
+        LocalDate watering = LocalDate.parse(items[4]);
+        int frequencyOfWatering = Integer.parseInt(items[3]);
+
+
+        Plant result = new Plant (name, notes, planted, watering, frequencyOfWatering);
+        return result;
+
     }
 
 

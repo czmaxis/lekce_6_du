@@ -1,4 +1,6 @@
-public class PlantException extends Exception{
+import java.io.FileNotFoundException;
+
+public class PlantException extends Exception {
     public PlantException(String message) {super(message);}
     }
 
