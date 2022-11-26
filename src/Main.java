@@ -1,13 +1,29 @@
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class Main {
+    public static final String FILENAME = "F:\\Programy JAVA\\lekce_5_du\\kvetiny.txt";
 
 
-    public static void main(String[] args) throws  FileNotFoundException {
+    public static void main(String[] args) throws  FileNotFoundException, PlantException {
+        PlantData list = new PlantData();
+        try {
+            list.readPlantsFromFile(FILENAME);
+        }catch (PlantException e){
+            System.err.println("chyba při čtení souboru: "+ e.getLocalizedMessage());
+
+        }
+        List<Plant> listOfplants = list.getListOfPlants();
+        System.out.println(listOfplants);
+        for (Plant plant : listOfplants){
+            System.out.println(plant.getName()+" "+ plant.getNotes()+" "+plant.getPlanted()+" "+plant.getWatering()+" "+plant.getFrequencyOfWatering());
+        }
+
+
 
 
     }
@@ -27,4 +43,3 @@ public class Main {
 
     }
 
-}

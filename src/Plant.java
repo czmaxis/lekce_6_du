@@ -40,7 +40,7 @@ public class Plant {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
 
-        String[] items = data.split("   ");
+        String[] items = null;
         String name = items[0];
         String notes = items[1];
         LocalDate planted = LocalDate.parse(items[5]);
