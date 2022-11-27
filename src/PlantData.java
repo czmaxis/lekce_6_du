@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.math.BigDecimal;
 import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
@@ -12,8 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlantData  {
+
      List<Plant> listOfPlants = new ArrayList<>();
-    public static final String SPACE  = "  ";
+    public static final String SPACE  = "\t";
     public void readPlantsFromFile(String filename) throws PlantException, FileNotFoundException {
         String nextLine ="";
         String[] items = new String[0];
@@ -39,22 +37,51 @@ public class PlantData  {
                 frequencyOfWatering = Integer.parseInt(items[2]);
                 Plant plantFromTxt = new Plant(name, notes, planted, watering, frequencyOfWatering);
                 addPlant(plantFromTxt);
-
             }
 
         }catch (FileNotFoundException e) {throw new PlantException("Soubor nenalezen: " + filename + e.getLocalizedMessage());
         }catch (NumberFormatException e) {throw new PlantException(items[2] +"nutno zadat celé číslo " + e.getLocalizedMessage() + "na řádku: " + lineNumber);
-        }catch (DateTimeParseException e) {throw new PlantException("nesprávný formát data zasazané nebo poslední zálivky "+ items[3] +" "+ items[4]);}
+        }catch (DateTimeParseException e) {throw new PlantException("nesprávný formát data zasazané nebo poslední zálivky "+ items[3] +" "+ items[4]+ " řádek s chybnou: " + lineNumber);}
+    }
+    public void writePurchasesToFile(String filename) throws PlantException {
+        int lineNumber = 0;
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+            for (Plant plant : listOfPlants) {
+                lineNumber ++;
+                String outputLine =
+                        plant.getName()+SPACE
+                                + plant.getNotes()+SPACE
+                                + plant.getFrequencyOfWatering()+SPACE
+                                + plant.getWatering()+SPACE
+                                + plant.getPlanted()+SPACE;
+                writer.println(outputLine);
+            }
+        } catch (IOException e) {
+
+            throw new PlantException ("Nastala chyba při zápisu do souboru na řádku: "+lineNumber+" " +e.getLocalizedMessage());
+        }
+
+
     }
 
 
 
+
 //
-    public void addPlant (Plant newPlant) {listOfPlants.add(newPlant);}
+    public void addPlant (Plant plant) {
+        listOfPlants.add(plant);}
 //
-    public void removePlant(Plant deletePlant) {listOfPlants.remove(deletePlant);}
+    public void removePlantAtIndex(int index) {
+        listOfPlants.remove(index);}
+
+    public Plant getPlantAtIndex (int index){
+        return listOfPlants.get(index);}
+
     public List<Plant> getListOfPlants() {
        return new ArrayList<>(listOfPlants);}
+
+
+
 
 
 

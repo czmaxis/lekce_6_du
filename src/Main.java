@@ -21,7 +21,11 @@ public class Main {
         System.out.println(listOfplants);
         for (Plant plant : listOfplants){
             System.out.println(plant.getName()+" "+ plant.getNotes()+" "+plant.getPlanted()+" "+plant.getWatering()+" "+plant.getFrequencyOfWatering());
+            System.out.println();
+
         }
+
+
 
 
 
