@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static final String FILENAME = "F:\\Programy JAVA\\lekce_5_du\\kvetiny.txt";
+    public static final String OUTPUTFILENAME = "F:\\Programy JAVA\\lekce_5_du\\kvetiny - kopie.txt";
 
 
     public static void main(String[] args) throws  FileNotFoundException, PlantException {
@@ -20,10 +21,22 @@ public class Main {
         List<Plant> listOfplants = list.getListOfPlants();
         System.out.println(listOfplants);
         for (Plant plant : listOfplants){
-            System.out.println(plant.getName()+" "+ plant.getNotes()+" "+plant.getPlanted()+" "+plant.getWatering()+" "+plant.getFrequencyOfWatering());
-            System.out.println();
-
+            //System.out.println(plant.getName()+" "+ plant.getNotes()+" "+plant.getPlanted()+" "+plant.getWatering()+" "+plant.getFrequencyOfWatering());
+           System.out.println(plant.getWateringInfo());
         }
+
+//        listOfplants.remove(2);
+//        Plant bazalka = new Plant("Bazalka ", " V kuchyni ",LocalDate.of(2021,4,4),LocalDate.of(2021,9,1), 3);
+//       // listOfplants.add(bazalka);
+
+
+        try {
+            list.writePlantsToFile(OUTPUTFILENAME);
+        }catch (PlantException e){
+            System.err.println("nastala chyba při zápisu do souboru " + e.getLocalizedMessage());
+        }
+
+
 
 
 
@@ -46,4 +59,5 @@ public class Main {
 
 
     }
+}
 

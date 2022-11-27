@@ -38,12 +38,23 @@ public class PlantData  {
                 Plant plantFromTxt = new Plant(name, notes, planted, watering, frequencyOfWatering);
                 addPlant(plantFromTxt);
             }
+           // removePlantAtIndex(2);
+
+
 
         }catch (FileNotFoundException e) {throw new PlantException("Soubor nenalezen: " + filename + e.getLocalizedMessage());
         }catch (NumberFormatException e) {throw new PlantException(items[2] +"nutno zadat celé číslo " + e.getLocalizedMessage() + "na řádku: " + lineNumber);
         }catch (DateTimeParseException e) {throw new PlantException("nesprávný formát data zasazané nebo poslední zálivky "+ items[3] +" "+ items[4]+ " řádek s chybnou: " + lineNumber);}
+
+
+
     }
-    public void writePurchasesToFile(String filename) throws PlantException {
+
+    public void writePlantsToFile(String filename) throws PlantException {
+        removePlantAtIndex(2);
+        Plant bazalka = new Plant("Bazalka ", " V kuchyni ",LocalDate.of(2021,4,4),LocalDate.of(2021,9,1), 3);
+        addPlant(bazalka);
+
         int lineNumber = 0;
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (Plant plant : listOfPlants) {
@@ -60,6 +71,7 @@ public class PlantData  {
 
             throw new PlantException ("Nastala chyba při zápisu do souboru na řádku: "+lineNumber+" " +e.getLocalizedMessage());
         }
+
 
 
     }
