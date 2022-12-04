@@ -1,9 +1,5 @@
-import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.io.FileNotFoundException;
 
 public class Main {
@@ -44,12 +40,46 @@ public class Main {
         }catch (PlantException e){
             System.err.println("chyba při čtení souboru: "+ e.getLocalizedMessage());
             }
-        System.out.println("seřazení rostlin podle jména: ");
+
+        System.out.println("seřazení rostlin podle jména:\n ");
 
         Collections.sort(listOfplants);
         listOfplants.forEach(n -> {System.out.println(n.getName());});
 
-        System.out.println("seřazení rostlin podle data zasazení");
+        System.out.println("seřazení rostlin podle poslední zálivky:\n ");
+
+        // listOfplants.sort(Comparator.comparing(plant -> plant.getPlanted()));
+       Collections.sort(listOfplants, new PlantWateringComparator());
+       // Collections.sort(listOfplants, (plant1, plant2) -> plant1.getPlanted().compareTo(plant2.getPlanted()));
+        listOfplants.forEach(n -> {System.out.println(n.getName() +" "+ n.getWatering());});
+
+        System.out.println("dny kdy proběhlo zasazení rostliny:\n ");
+
+        Set<LocalDate> dataZasazení = new HashSet();
+        for (Plant plant : listOfplants){
+            dataZasazení.add(plant.getPlanted());
+        }
+        System.out.println(dataZasazení.toString());
+
+        System.out.println("zasazené rostliny za poslední měsíc: \n");
+
+        Plant ruze = new Plant("růže","test",LocalDate.of(2022,12,1),LocalDate.of(2022,12,2),2);
+        listOfplants.add(ruze);
+
+        //System.out.println(LocalDate.now().minusMonths(1));
+        LocalDate lastMonth = LocalDate.now().minusMonths(1);
+        for (Plant plant : listOfplants){
+            if (plant.getPlanted().isAfter(lastMonth) || plant.getPlanted().isEqual(lastMonth)){
+                System.out.println(plant.getName()+ " " + plant.getPlanted());
+            }
+
+        }
+
+
+
+
+
+
 
 
 

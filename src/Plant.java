@@ -46,72 +46,22 @@ public class Plant implements Comparable<Plant> {
         this.frequencyOfWatering = 7;
     }
 
-    public static Plant parsePlant(String data)throws PlantException {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-
-        String[] items = null;
-        String name = items[0];
-        String notes = items[1];
-        LocalDate planted = LocalDate.parse(items[5]);
-        LocalDate watering = LocalDate.parse(items[4]);
-        int frequencyOfWatering = Integer.parseInt(items[3]);
-
-
-        Plant result = new Plant (name, notes, planted, watering, frequencyOfWatering);
-        return result;
-
-    }
-//    List<Plant> listOfPlants = new ArrayList<>();
-//    public static final String SPACE  = "\t";
-//    //---------------------------------------
-//    public void writePlantsToFile(String filename) throws PlantException {
-//        removePlantAtIndex(2);
-//        Plant bazalka = new Plant("Bazalka ", " V kuchyni ",LocalDate.of(2021,4,4),LocalDate.of(2021,9,1), 3);
-//        addPlant(bazalka);
+//    public static Plant parsePlant(String data)throws PlantException {
 //
-//        int lineNumber = 0;
-//        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-//            for (Plant plant : listOfPlants) {
-//                lineNumber ++;
-//                String outputLine =
-//                        plant.getName()+SPACE
-//                                + plant.getNotes()+SPACE
-//                                + plant.getFrequencyOfWatering()+SPACE
-//                                + plant.getWatering()+SPACE
-//                                + plant.getPlanted()+SPACE;
-//                writer.println(outputLine);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+//
+//        String[] items = null;
+//        String name = items[0];
+//        String notes = items[1];
+//        LocalDate planted = LocalDate.parse(items[5]);
+//        LocalDate watering = LocalDate.parse(items[4]);
+//        int frequencyOfWatering = Integer.parseInt(items[3]);
 //
 //
-//            }
-//        } catch (IOException e) {
-//
-//            throw new PlantException ("Nastala chyba při zápisu do souboru na řádku: "+lineNumber+" " +e.getLocalizedMessage());
-//        }
-//
-//
+//        Plant result = new Plant (name, notes, planted, watering, frequencyOfWatering);
+//        return result;
 //
 //    }
-//
-//
-//
-//
-//    //
-//    public void addPlant (Plant plant) {
-//        listOfPlants.add(plant);}
-//    //
-//    public void removePlantAtIndex(int index) {
-//        listOfPlants.remove(index);}
-//
-//    public Plant getPlantAtIndex (int index){
-//        return listOfPlants.get(index);}
-//
-//    public List<Plant> getListOfPlants() {
-//        return new ArrayList<>(listOfPlants);}
-
-    //--------------------------------------------
-
-
 
     public String getName(){
         return name;
