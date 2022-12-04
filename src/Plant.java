@@ -1,7 +1,17 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 
-public class Plant {
+public class Plant implements Comparable<Plant> {
+
+
     private String name;
     private String notes;
     private LocalDate planted;
@@ -52,6 +62,54 @@ public class Plant {
         return result;
 
     }
+//    List<Plant> listOfPlants = new ArrayList<>();
+//    public static final String SPACE  = "\t";
+//    //---------------------------------------
+//    public void writePlantsToFile(String filename) throws PlantException {
+//        removePlantAtIndex(2);
+//        Plant bazalka = new Plant("Bazalka ", " V kuchyni ",LocalDate.of(2021,4,4),LocalDate.of(2021,9,1), 3);
+//        addPlant(bazalka);
+//
+//        int lineNumber = 0;
+//        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+//            for (Plant plant : listOfPlants) {
+//                lineNumber ++;
+//                String outputLine =
+//                        plant.getName()+SPACE
+//                                + plant.getNotes()+SPACE
+//                                + plant.getFrequencyOfWatering()+SPACE
+//                                + plant.getWatering()+SPACE
+//                                + plant.getPlanted()+SPACE;
+//                writer.println(outputLine);
+//
+//
+//            }
+//        } catch (IOException e) {
+//
+//            throw new PlantException ("Nastala chyba při zápisu do souboru na řádku: "+lineNumber+" " +e.getLocalizedMessage());
+//        }
+//
+//
+//
+//    }
+//
+//
+//
+//
+//    //
+//    public void addPlant (Plant plant) {
+//        listOfPlants.add(plant);}
+//    //
+//    public void removePlantAtIndex(int index) {
+//        listOfPlants.remove(index);}
+//
+//    public Plant getPlantAtIndex (int index){
+//        return listOfPlants.get(index);}
+//
+//    public List<Plant> getListOfPlants() {
+//        return new ArrayList<>(listOfPlants);}
+
+    //--------------------------------------------
 
 
 
@@ -110,6 +168,30 @@ public class Plant {
         return getName() + " Datum poslendí zálivky: " + getWatering() + " Frekvence zálivky: " + getFrequencyOfWatering();
     }
 
+    @Override
+    public int compareTo(Plant secondPlant){
+        int compareNames =
+                this.getName().compareTo(secondPlant.getName());
+        if (compareNames != 0 ){
+            return compareNames;
+        }else {
+            return this.getName().compareTo(secondPlant.getName());
+        }
+
+    }
+
+
+
+
+
+
+
+//    @Override
+//        public int compare(Plant first, Plant second) {
+//
+//            return first.getName().compareTo(second.getName());
+//
+//        }
 
 
 

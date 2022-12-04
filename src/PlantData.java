@@ -1,17 +1,14 @@
 import java.io.*;
-import java.math.BigDecimal;
-import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.Comparator;
 
-public class PlantData  {
+public class PlantData {
 
-     List<Plant> listOfPlants = new ArrayList<>();
-    public static final String SPACE  = "\t";
+     ArrayList<Plant> listOfPlants = new ArrayList<>();
+
+     public static final String SPACE  = "\t";
     public void readPlantsFromFile(String filename) throws PlantException, FileNotFoundException {
         String nextLine ="";
         String[] items = new String[0];
@@ -66,6 +63,8 @@ public class PlantData  {
                                 + plant.getWatering()+SPACE
                                 + plant.getPlanted()+SPACE;
                 writer.println(outputLine);
+
+
             }
         } catch (IOException e) {
 
@@ -95,13 +94,18 @@ public class PlantData  {
 
 
 
+}
+
+
+
+
 
 
 
 
 
     //  public void removePlant(Plant listOfPlants()) {listOfPlants.remove();
-}
+
 
 
 

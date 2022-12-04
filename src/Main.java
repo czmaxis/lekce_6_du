@@ -1,6 +1,7 @@
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -37,9 +38,18 @@ public class Main {
         }
 
 
+        try {
+            list.readPlantsFromFile(OUTPUTFILENAME);
 
+        }catch (PlantException e){
+            System.err.println("chyba při čtení souboru: "+ e.getLocalizedMessage());
+            }
+        System.out.println("seřazení rostlin podle jména: ");
 
+        Collections.sort(listOfplants);
+        listOfplants.forEach(n -> {System.out.println(n.getName());});
 
+        System.out.println("seřazení rostlin podle data zasazení");
 
 
 
@@ -59,5 +69,6 @@ public class Main {
 
 
     }
+
 
 
